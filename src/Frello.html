@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Frello</title>
+    <script src="angular.min.js"></script>
+    <script src="Frello.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="bootstrap.min.css" >
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="bootstrap-theme.min.css" >
+    <link rel="stylesheet" href="Frello.css">
+</head>
+<body ng-app="Frello">
+<div ng-controller="FrelloToDoListController as todoListCtrl">
+
+    <br/>
+    <h1>Frello</h1>
+    <p>The best tool for keeping up with your todo list!</p>
+    <input type="text" ng-model="todoListCtrl.todoText" />
+    <button class="btn " ng-class="addEditBtnClass" ng-click="todoListCtrl.addTodo(todoListCtrl.todoText)" >{{addButton}}</button>
+    <button class="btn" ng-click="todoListCtrl.toggleHide()" >Toggle hide</button>
+    <button class="btn btn-danger" ng-click="todoListCtrl.archive()" >Archive</button>
+    <button class="btn btn-warning" ng-click="todoListCtrl.unArchive()" >Un archive</button>
+    <button class="btn btn-danger" ng-click="todoListCtrl.clearTodo()" >Clear todo list</button>
+    <button class="btn btn-danger" ng-click="todoListCtrl.clearArchive()" >Clear archive list</button>
+
+    <div ng-hide="todoListCtrl.checkHide()">
+        <h2>Todo list</h2>
+        <span>{{todoListCtrl.remaining()}} of {{todoListCtrl.todos.length}} remaining, archived {{todoListCtrl.archivedTodos.length}}</span>
+        <div class="row">
+            <div class="col-xs-6 ">
+                <h3>Current Todo</h3>
+            </div>
+            <div class="col-xs-6 ">
+                <h3>Archive</h3>
+            </div>
+
+        </div>
+        <div class="row">
+            <div class="col-xs-6 ">
+                <ul class="unstyled">
+                    <li ng-repeat="todo in todoListCtrl.todos">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="todo.done"/>
+                            <span class="done-{{todo.done}}" ng-click="todoListCtrl.editTodo(todo)">{{todo.text}}</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-xs-6 ">
+                <ul class="unstyled">
+                    <li ng-repeat="archivedTodo in todoListCtrl.archivedTodos">
+                        <label class="checkbox">
+                            <input type="checkbox" ng-model="archivedTodo.done"/>
+                            <span class="done-{{archivedTodo.done}}">{{archivedTodo.text}}</span>
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

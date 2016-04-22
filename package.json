@@ -1,0 +1,27 @@
+{
+  "name": "frellogulpexample",
+  "version": "1.0.0",
+  "description": "Frello gulp example",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/KozyLigh/FrelloGulpExample.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/KozyLigh/FrelloGulpExample/issues"
+  },
+  "homepage": "https://github.com/KozyLigh/FrelloGulpExample#readme",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-concat": "^2.6.0",
+    "gulp-flatten": "^0.2.0",
+    "gulp-ng-annotate": "^2.0.0",
+    "gulp-notify": "^2.2.0",
+    "gulp-webserver": "^0.9.1"
+  }
+}
