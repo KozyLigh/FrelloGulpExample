@@ -15,29 +15,30 @@ gulp.task('scripts',function(){
     gulp.src(['src/assets/js/Frello.js','src/assets/js/*.js'])
         .pipe(concat('Frello.js'))
         .pipe(ngAnnotate())
-        .pipe(gulp.dest('dist/asests/js'))
+        .pipe(gulp.dest('dist/assets/js'))
         .pipe(notify('JS is comipled'));
 });
 
 gulp.task('move',function(){
 
-gulp.src(['src/index.html']).pipe(gulp.dest('dist')).pipe(notify('Moved index.html'));
+gulp.src(['src/Frello.html']).pipe(gulp.dest('dist')).pipe(notify('Moved Frello.html'));
 
-gulp.src(['!./src/index.html','src/**/*.html']).pipe(flatten()).pipe(gulp.dest('dist/templates')).pipe(notify('Moved templates'));
+gulp.src(['!./src/Frello.html','src/**/*.html']).pipe(flatten()).pipe(gulp.dest('dist/templates')).pipe(notify('Moved templates'));
+gulp.src(['./src/assets/**/*.css']).pipe(flatten()).pipe(gulp.dest('dist/assets/css')).pipe(notify('Moved custom CSS components to dist/assets/css'));
 
 });
 
 gulp.task('moveBower',function(){
-    gulp.src(['bower_components/**/*.js']).pipe(gulp.dest('dist/assets/js')).pipe(notify('Moved bower JS components to dist/assets/js'));
-    gulp.src(['bower_components/**/*.css']).pipe(gulp.dest('dist/assets/css')).pipe(notify('Moved bower CSS components to dist/assets/css'));
+    gulp.src(['bower_components/**/*.js']).pipe(flatten()).pipe(gulp.dest('dist/assets/js')).pipe(notify('Moved bower JS components to dist/assets/js'));
+    gulp.src(['bower_components/**/*.css']).pipe(flatten()).pipe(gulp.dest('dist/assets/css')).pipe(notify('Moved bower CSS components to dist/assets/css'));
 });
 
 gulp.task('serve',function(){
 
-    gulp.src('.').pipe(webserver({
+    gulp.src('./dist').pipe(webserver({
         port:48080,
         livereload:true,
-        open: 'http://localhost:48080/dist/'
+        open: 'http://localhost:48080/Frello.html'
     }));
 
 });
