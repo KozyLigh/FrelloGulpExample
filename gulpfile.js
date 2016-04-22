@@ -9,12 +9,14 @@ var notify = require('gulp-notify');
 var flatten = require('gulp-flatten');
 var webserver = require('gulp-webserver');
 var ngAnnotate = require('gulp-ng-annotate');
+var uglify = require('gulp-uglify');
 
 //script tasks
 gulp.task('scripts',function(){
     gulp.src(['src/assets/js/Frello.js','src/assets/js/*.js'])
         .pipe(concat('Frello.js'))
-        .pipe(ngAnnotate())
+        .pipe(ngAnnotate({add: true}))
+        .pipe(uglify())
         .pipe(gulp.dest('dist/assets/js'))
         .pipe(notify('JS is comipled'));
 });
